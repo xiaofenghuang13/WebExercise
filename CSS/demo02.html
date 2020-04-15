@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>使用 flex 实现元素水平垂直居中（新版本与老版本）</title>
+	<style type="text/css">
+		* { margin: 0; padding: 0; }
+		#wrap { width: 500px; height: 500px; background: grey; }
+		#wrap .box { width: 200px; height: 200px; background: pink; }
+
+		.wrap1 { position: relative; }
+		.wrap1 .box {
+			/* 居中方案1 */
+			/*position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;*/
+
+			/* 居中方案2 */
+			/*
+			 * 1 - 元素相对于父元素决定定位，并且 top 和 left 都为50%；此时元素的盒子左上角的点刚好是父元素的中心点
+			 * 2 - 元素向上、向左移动自身的宽高的一半
+			 */
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transition: translate(-50%, -50%);
+			/*margin-top: -100px;*/
+			/*margin-left: -100px;*/
+			/* 使用 margin-top、margin-left 相当于 translate */
+		}
+
+		/* 居中方案3 flex */
+		.wrap2 {
+			/* 新版本 */
+			display: flex;
+			justify-content: center;	/* 水平方向居中 */
+			align-items: center; 		/* 垂直方向居中 */
+
+			/* 老版本 */
+			display: -webkit-box;
+			-webkit-box-pack: center;	/* 水平方向居中 */
+			-webkit-box-align: center;  /* 垂直方向居中 */
+		}
+
+		
+	</style>
+</head>
+<body>
+	<div id="wrap" class="wrap2">
+		<div class="box box1"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>修改密码</title>
+</head>
+<body>
+	<script type="text/javascript" src="./sha3.js"></script>
+	<script type="text/javascript">
+		var encodePwd = function(str){
+		    // 密码加密
+		    return CryptoJS.SHA3(str).toString(CryptoJS.enc.Hex);
+		};
+		console.log(encodePwd('demo'));
+	</script>
+</body>
+</html>

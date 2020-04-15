@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>call&apply</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// call() 和 apply()
+		//	- 这两个方法都是函数对象的方法，需要通过函数对象来调用
+		//	- 当对函数调用 call() 和 apply() 都会调用函数执行
+
+		function fun() {
+			alert("我是fun函数！");
+		}
+
+		// fun();			// 我是fun函数！
+		// fun.call();		// 我是fun函数！
+		// fun.apply();		// 我是fun函数！
+
+		// 当调用 call() 和 apply() 可以将一个对象指定为第一个参数，此时这个对象将会成为函数执行时的 this
+		function fun1() {
+			console.log(this.name);
+		}
+
+		var name = "window";
+
+		var obj = {
+			name: "obj"
+		};
+
+		fun1();				// window
+		fun1.call(obj);		// obj
+		fun1.apply(obj);	// obj
+		console.log('\n');
+
+		// call()方法可以将实参在对象之后依次传递
+		// apply()方法需要将实参封装到一个数组中统一传递
+		function fun2(a, b) {
+			console.log(this.name);
+			console.log("a = " + a);
+			console.log("b = " + b);
+		}
+
+		var obj1 = {
+			name: "obj1"
+		};
+
+		fun2.call(obj1);		// obj1, undefined, undefined
+
+		console.log('call()传参...');
+		fun2.call(obj1, 2, 3);	// obj1, 2, 3
+
+		console.log('apply()传参...');
+		fun2.apply(obj1, [2, 3]);	// obj1, 2, 3
+
+		// bind()的特点: 绑定完this之后不会立即调用当前的函数，而是将函数返回
+		//	传参的方式同call一样
+		fun2.bind(obj1);
+		fun2.bind(obj1, 2, 3)();
+	</script>
+</body>
+</html>

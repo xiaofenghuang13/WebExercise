@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>浅拷贝和深拷贝</title>
+</head>
+<body>
+<script type="text/javascript">
+	var obj = {
+		a: undefined,
+		b: 2,
+		c: [1, 2, 3],
+		d: [1, [2, 3], 4],
+		e: null,
+		f: function() {
+			console.log('11');
+		}
+	};
+
+	// 使用递归实现深拷贝
+	function deepClone(obj) {
+		var target = Array.isArray(obj) ? [] : {};
+		for (var key in obj) {
+			if (typeof obj[key] === 'object') {
+				target[key] = deepClone(obj[key]);
+			} else {
+				target[key] = obj[key];
+			}
+		}
+		return target;
+	}
+	
+	var target = deepClone(obj);
+	console.log(obj);
+	console.log(target);
+</script>
+</body>
+</html>

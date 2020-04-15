@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>插入排序</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 排序算法 —— 插入排序
+		var arr = [36, 18, 12, 8, 16, 1];
+		
+		function insert(arr) {
+			var newArr = [];
+			newArr.push(arr[0]);
+			for (let i = 1; i < arr.length; i++) {
+				let A = arr[i];
+				// 和newArr中的项进行比较，从后向前比
+				for (let j = newArr.length - 1; j >= 0; j--) {
+					let B = newArr[j];
+					if (A > B) {
+						newArr.splice(j + 1, 0, A);
+						break;
+					}
+
+					if (j === 0) {
+						newArr.unshift(A);
+					}
+				}
+			}
+			return newArr;
+		}
+		console.log(insert(arr));
+	</script>
+</body>
+</html>

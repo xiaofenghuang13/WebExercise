@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Demo</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 已知有字符串 foo = 'get-element-by-id'，写一个 function 将其转换成驼峰表示法“getElementById”
+		var foo = 'get-element-by-id';
+		function change(foo) {
+			var arr = foo.split('-');
+			for (var i = 1; i < arr.length; i++) {
+				// 获取每个元素中的第一个字符并转换成大写
+				arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].substr(1, arr[i].length - 1);
+			}
+			console.log(arr);
+			return arr.join('');
+		}
+		console.log(change(foo));
+	</script>
+</body>
+</html>

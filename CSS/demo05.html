@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>求背景图片左边到盒子左边框外侧的距离</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		#box {
+			width: 100px;
+			height: 200px;
+			background: pink;
+			padding: 100px;
+			border: 80px solid blue;
+			background-image: url("img/1.jpg");
+			background-repeat: no-repeat;
+			/* 设置背景图片起始原的位置，值有：content-box padding-box border-box */
+			background-origin: content-box;
+			/*background-position: -50px 0;*/
+		}
+
+		/* 最终距离：80 + 100 +（-50）= 130 */
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

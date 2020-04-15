@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>数据类型</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 基本数据类型 —— string number boolean undefined null
+		// 引用数据类型 —— object
+		//	- Function: 一种特殊的对象（可以执行）
+		//	- Array: 一种特殊的对象（可以通过数组下标访问，内部数据是有序的）
+
+		// 判断数据类型
+		//	- typeof —— 检测变量的数据类型，返回类型为字符串
+		//		* 可以判断: undefined number string boolean function
+		//		* 不能判断: null object; null是一个只有一个值的特殊类型，表示一个空对象引用
+		//	- instanceof —— 判断对象的具体类型
+		//	- === 
+		//		* 可以判断: undefined null
+		var a;
+		console.log(a);							// undefined
+		console.log(typeof a);					// 'undefined'
+		console.log(typeof a === 'undefined');	// true
+		console.log(a === undefined);			// true
+		console.log(undefined === 'undefined');	// false
+
+		var b = {
+			b1: [0, 1, console.log],
+			b2: function() {
+				return function() {
+					return 'CJ';
+				}
+			}
+		};
+
+		console.log(typeof b);						// 'object'
+		console.log(b instanceof Object);			// true
+		console.log(b.b1 instanceof Array);			// true
+		console.log(b.b1 instanceof Object);		// true
+		console.log(b.b1[2] instanceof Function);	// true
+		console.log(b.b1[2] instanceof Object);		// true
+		b.b1[2]('我调用了函数~~~');					// 我调用了函数~~~
+		b.b2()();	// 'CJ'
+
+		// JavaScript规范中提到，要比较相等性之前，不能将 null 和 undefined转换成其它任何值，并且规定 null 和 undefined 是相等的。
+		console.log(null == undefined);		// true
+		console.log(typeof null);			// 'object'
+		console.log(typeof undefined);		// 'undefined'
+		console.log(null === undefined);	// false
+
+		// undefined与null的区别？
+		//	- undefined 代表定义未赋值
+		//	- null 代表已赋值，并且值为null
+		var c;
+		console.log(c);	// undefined
+		c = null;
+		console.log(c);	// null
+
+		var d = null;	// 初始赋值为null，表明将要赋值为对象
+		d = ['123', 123];
+		d = null;	// 让d指向的对象成为垃圾对象（被垃圾回收器回收）
+	</script>
+</body>
+</html>

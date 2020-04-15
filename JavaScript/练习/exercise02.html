@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JS</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function Foo() {
+			getName = function() { alert(1); };
+			return this;
+		}
+
+		Foo.getName = function() { alert(2); };
+		Foo.prototype.getName = function() { alert(3); };
+
+		var getName = function() { alert(4); };
+		function getName() { alert(5); }
+
+		// 变量提升和函数提升 => 遇到关键字 var 和 function，会将其声明的变量或者函数提升至代码最前方
+		// 提升之后的代码
+		/*function Foo() {
+			// 代码执行到 Foo 函数中时，因为 Foo() 里面没有使用 var 定义 getName,所以会提升到全局作用域中将全局中的 getName 替换掉
+			getName = function() { alert(1); };
+			return this;	// this 返回的是当前对于调用 Foo 函数的对象 => window
+		}
+		// 变量名和函数名冲突的情况下，变量会被忽略，只会保留函数的定义
+		// var getName;	 
+		// function getName() { alert(5); }
+
+		Foo.getName = function() { alert(2); };
+		Foo.prototype.getName = function() { alert(3); };
+
+		// 代码编译到这一步的时候有一个名为 getName 的函数，会将前面的 function getName覆盖，
+		// getName = function() { alert(4); };*/
+		// 提升之后的代码
+
+		// 请写出下列的输出结果
+		Foo.getName();			// 2
+		getName();				// 4
+		// Foo().getName() => (Foo()).getName(); => window.getName();
+		Foo().getName();		// 1
+		getName();				// 1
+		// .的优先级最高 new Foo.getName() => new (Foo.getName)() => new (function() { alert(2); })()
+		new Foo.getName();		// 2
+		// new Foo().getName() => (new Foo()).getName() => foo.getName()
+		new Foo().getName();	// 3
+		// new new Foo().getName() => new (new Foo()).getName() => new ((new Foo()).getName)() => new (foo.getName)()
+		new new Foo().getName();// 3
+	</script>
+</body>
+</html>

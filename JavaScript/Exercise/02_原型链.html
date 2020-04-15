@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>02_原型链</title>
+</head>
+<body>
+<script type="text/javascript">
+	function Fn() {
+		this.x = 100;
+		this.y = 200;
+		this.getX = function() {
+			console.log(this.x);
+		};
+	}
+
+	Fn.prototype = {
+		y: 400,
+		getX: function() {
+			console.log(this.x);
+		},
+		getY: function() {
+			console.log(this.y);
+		},
+		sum: function() {
+			console.log(this.x + this.y);
+		}
+	};
+
+	/*Fn.prototype.getX = function() {
+		console.log(this.x);
+	};
+
+	Fn.prototype.getY = function() {
+		console.log(this.y);
+	};*/
+	var f1 = new Fn;
+	var f2 = new Fn;
+	console.log(f1.getX === f2.getX);						// false
+	console.log(f1.getY === f2.getY);						// false
+	console.log(f1.__proto__.getY === Fn.prototype.getY);	// false
+	console.log(f1.__proto__.getX === f2.getX);				// true
+	console.log(f1.getX === Fn.prototype.getX);				// false
+	console.log(f1.constructor);							// Fn
+	console.log(Fn.prototype.__proto__.constructor);		// Object
+	f1.getX();												// 100
+	f2.__proto__.getX();									// undefined
+	f2.getY();												// 200
+	Fn.prototype.getY();									// undefined
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>键盘跟随div移动</title>
+	<style type="text/css">
+		#box {
+			width: 100px;
+			height: 100px;
+			background-color: red;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<script type="text/javascript">
+		// 使 div 可以根据不同的方向键向不同的方向移动
+
+		// 表示移动的速度
+		var speed = 10;
+
+		// 创建一个变量表示方向
+		var dir = 0;
+
+		// 开启一个定时器，来控制 div 的移动
+		setInterval(function() {
+			// 向上 —— 38
+			// 向下 —— 40
+			// 向左 —— 37
+			// 向右 —— 39
+			switch (dir) {
+				case 37:
+					// 向左 —— left减小
+					box.style.left = box.offsetLeft - speed + "px";
+					break;
+				case 39:
+					// 向右 —— left增大
+					box.style.left = box.offsetLeft + speed + "px";
+					break;
+				case 38:
+					// 向上 —— top减小
+					box.style.top = box.offsetTop - speed + "px";
+					break;
+				case 40:
+					// 向下 —— top增大
+					box.style.top = box.offsetTop + speed + "px";
+					break;
+				default:
+					break;
+			}
+		}, 30);
+
+		document.onkeydown = function(event) {
+			event = event || window.event;
+
+			// 当用户按下ctrl之后，速度加快
+			if (event.ctrlKey) {
+				speed = 500;
+			} else {
+				speed = 10;
+			}
+
+			dir = event.keyCode;
+		};
+
+		document.onkeyup = function() {
+			dir = 0;
+		};
+	</script>
+</body>
+</html>

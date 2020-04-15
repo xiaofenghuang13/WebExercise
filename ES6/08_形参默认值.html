@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>形参默认值</title>
+</head>
+<body>
+<script type="text/javascript">
+	function Point(x = 0, y = 0) {
+		this.x = x;
+		this.y = y;
+	}
+
+	let point = new Point(23, 45);
+	console.log(point);		// x: 23, y: 45
+
+	let point1 = new Point();
+	console.log(point1);	// x: 0, y: 0
+</script>
+</body>
+</html>

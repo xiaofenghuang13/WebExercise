@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>类型转化</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/*
+			== 进行比较的时候，如果左右两边数据类型不一样，则先转换为相同的数据类型，然后再进行比较
+				1、 {} == {} false 两个对象进行比较，比较的是堆内存中的地址;
+				2、 null == undefined true | null === undefined false
+				3、 NaN == NaN false NaN和谁都不相等
+				4、 [12] == "12" 对象和字符串比较，是把对象toString()转换为字符串后再进行比较的
+				5、 剩余所有清空再进行比较的时候，都是转化为数字（前提是数据类型不一样）
+					对象转数字：先转换为字符串，然后再转换为数字
+					字符串转数字：只有出现一个非数字字符，结果就是NaN
+					布尔转数字： true -> 1 false => 0
+					null转数字0
+					undefined转数字NaN
+			[12] == true => 12 == 1 false
+		 */
+		var a = {
+			n: 0,
+			toString: function() {
+				return ++this.n;
+			}
+		};
+		if (a == 1 && a ==2 && a==3) {
+			console.log('OK');
+		}
+	</script>
+</body>
+</html>

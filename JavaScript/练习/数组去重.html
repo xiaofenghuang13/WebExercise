@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>数组去重</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 数组去重 —— 方案一
+		var arr = [8, 11, 20, 5, 20, 8, 0, 2, 4, 0, 8];
+
+		var t = [];
+		t[0] = arr[0];
+
+		for (var i = 0; i < arr.length; i++) {
+			for (var j = 0; j < t.length; j++) {
+				if (t[j] == arr[i]) {
+					break;
+				}
+				if (j == t.length - 1) {
+					t.push(arr[i]);
+				}
+			}
+		}
+		console.log(t);
+
+		// 数组去重 —— 方案二
+		var repeatArr = [1, 2, 3, 5, 2, 2, 6, 8, 2, 6];
+		for (var i = 0; i < repeatArr.length; i++) {
+			for (var j = i + 1; j < repeatArr.length; j++) {
+				if (repeatArr[i] == repeatArr[j]) {
+					repeatArr.splice(j, 1);
+					// 当删除了当前j所在的元素之后，后边的元素会自动补位
+					// 此时不会在比较这个元素，所以需要再进行一次j元素位置的比较
+					j--;
+				}
+			}
+		}
+		console.log(repeatArr);
+	</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>闭包的应用</title>
+</head>
+<body>
+	<script type="text/javascript" src="./myModule.js"></script>
+	<script type="text/javascript" src="./myModule2.js"></script>
+	<script type="text/javascript">
+		var module = myModule();
+
+		module.doSomething();
+		module.doOtherthing();
+
+		console.log('-------------------------');
+		
+		myModule2.doSomething();
+		myModule2.doOtherthing();
+	</script>
+</body>
+</html>

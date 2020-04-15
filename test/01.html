@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>test</title>
+	<style type="text/css">
+		html,body {
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			/*position: relative;*/
+			width: 100%;
+			height: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.subItem {
+			/*position: absolute;
+			top: 50%;
+			left: 50%;*/
+			width: 200px;
+			height: 200px;
+			background-color: red;
+			/*transform: translate(-50%, -50%);*/
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="subItem"></div>
+	</div>
+	<script type="text/javascript">
+		// 将数组arr中的每一项中的中文部分截取出来，如下图
+		var arr = ['1、河北省','2、山西省','3、内蒙古自治区','4、吉林省','5、黑龙江省','6、安徽省','7、江西省','8、河南省','9、湖北省','10、湖南省','11、广西壮族自治区','12、海南省'];
+		var newArr = [];
+		arr.forEach((item) => {
+			newArr.push(item.match(/[\u4e00-\u9fa5]+/)[0]);
+		});
+		console.log(newArr);
+
+
+		// 代码实现：将str中的 130000 字段单独取出来，请给出两种解决方法
+		var str = "gridTable_130000_FINISH";
+		console.log(str.match(/[0-9]+/)[0]);
+		console.log(str.split('_')[1]);
+
+		// 如下图、分页表格中点击查看按钮 查看某一条时，会跳转到另一个页面或者弹出一个遮罩层来显示某一条的详细数据
+		//  需求：要求关闭遮罩层或者从另一个页面返回当前列表页时，在不刷新页面的情况下，显示之前查看的指定页码的数据【例如点击查看的是页码为第2页中的某条数据，返回列表页或关闭遮罩层时还是显示第2页的数据，并刷新第2页的数据状态】 
+		// 注：写出具体的实现思路即可
+		// 将当前点击的数据的ID存储在sessionStorage或者localStorage，当进入路由的时候，在生命周期函数中根据存储在storage中的数据请求后台返回最新的数据状态。
+	</script>
+</body>
+</html>

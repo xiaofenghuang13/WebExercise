@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>排序算法</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// 排序算法
+		/*
+		 * 冒泡排序：
+		 * 		让数组中的当前项和后一项进行比较，如果当前项比后一项大，则两项交换位置（让大的靠后）即可。
+		 * 	比较完第一轮的时候，最后一个元素是最大的元素。
+		 * 	这时候最后一个元素是最大的，所以最后一个元素就不需要参与比较大小
+		 */
+		var arr = [36, 18, 12, 8, 16, 1];
+		// 外层循环控制比较的轮数，6个元素比较5轮
+		
+		function bubble(arr) {
+			for (let i = 0; i < arr.length - 1;i++) {
+				// 内层循环控制比较的次数，有五个元素时比较四次，每一轮结束后，最大的会被放到最后
+				for (let j = 0; j < arr.length - 1 - i; j++) {
+					if(arr[j] > arr[j+1]) {
+						let temp = arr[j];
+						arr[j] = arr[j+1] ;
+						arr[j+1] = temp;
+					}
+				}
+			}
+			return arr;
+		}
+		console.log(bubble(arr));
+	</script>
+</body>
+</html>

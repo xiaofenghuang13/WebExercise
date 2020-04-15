@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>图片懒加载</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			width: 400px;
+			margin: 0 auto;
+		}
+
+		.imgBox {
+			width: 400px;
+			height: 400px;
+			margin: 20px auto;
+			background: #bbb;
+		}
+
+		.imgBox img {
+			width: 100%;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		
+	</div>
+	<!-- <div class="imgBox">
+		<img src="" alt="" data-img="https://cn.vuejs.org/images/logo.png">
+	</div> -->
+	<script type="text/javascript" src="./lib/jquery.min.js"></script>
+	<script type="text/javascript">
+		let $container = $(".container"),
+			$window = $(window)
+			html = ``;
+		new Array(20).fill(null).forEach(item => {
+			html += `<div class="imgBox">
+					<img src="" alt="" data-img="https://cn.vuejs.org/images/logo.png">
+				</div>`;
+		});
+		$container.html(html);
+		$imgBoxs = $container.children(".imgBox");
+
+		// 多张图片延迟加载
+		$window.on("load scroll", function() {
+			// $B: 获取浏览器底边框距离BODY的距离
+			let $B = $window.outerHeight() + $window.scrollTop();
+
+			// 循环每一个图片区域，根据自己区域距离BODY的距离，计算出里面的图片是否加载
+			$imgBoxs.each((index, item) => {
+				let $item = $(item);
+				    $itemA = $item.outerHeight() + $item.offset().top
+				   	isLoad = $item.attr('isLoad');
+
+				if ($itemA <= $B && isLoad !== "true") {
+					$item.attr("isLoad", true);
+					// 加载当前区域中的图片
+					let $img = $item.children("img");
+					$img.attr('src', $img.attr('data-img'));
+
+					$img.on("load", function() {
+						// $img.css("display", "block");
+						$img.stop().fadeIn();
+					});
+				}
+			});
+		});
+
+		/*let $imgBox = $(".imgBox"),
+			$img = $imgBox.children("img"),
+			$window = $(window);
+
+		// jQuery中的事件支持多事件绑定
+		// window.onload或者window.onscroll时执行此函数
+		$window.on("load scroll", function() {
+			if ($img.attr("isLoad") === 'true') {
+				// 已经加载过，不会再加载
+				return;
+			}
+			let $A = $imgBox.outerHeight() + $imgBox.offset().top;
+			let $B = $window.outerHeight() + $window.scrollTop();
+
+			if ($A <= $B) {
+				// 加载真实图片
+				$img.attr('src', $img.attr('data-img'));
+				$img.on("load", function() {
+					// $img.css("display", "block");
+					$img.stop().fadeIn();
+				});
+				$img.attr("isLoad", true);
+			}
+		});*/
+	</script>
+</body>
+</html>

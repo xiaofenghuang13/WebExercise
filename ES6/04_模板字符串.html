@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>模板字符串</title>
+</head>
+<body>
+<!-- 
+模板字符串：简化字符串的拼接
+  * 模板字符串必须用 `` 包含
+  * 变化的部分使用${xx}定义
+ -->
+<script type="text/javascript">
+	let obj = {
+		username: 'kobe',
+		age: 39
+	};
+	// let str = '我的名字叫' + obj.username + '，我今年' + obj.age + '岁了';
+	let str = `我的名字叫${obj.username}，我今年${obj.age}岁了`;
+	console.log(str);
+</script>
+</body>
+</html>
